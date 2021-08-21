@@ -1,11 +1,18 @@
 # F1 VueJS
 
-## Project setup
+### Description
+Vue.js & Tailwind CSS app rendering F1 2021 Driver's Championship Standings
+
+### Dependencies
+- [TailwindCSS](https://tailwindcss.com/docs/)
+- [Ergast Developer API](http://ergast.com/mrd/)
+
+### Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development on localhost server
 ```
 npm run serve
 ```
@@ -15,5 +22,3 @@ npm run serve
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
