@@ -1,4 +1,4 @@
-# demo
+# F1 VueJS
 
 ## Project setup
 ```
