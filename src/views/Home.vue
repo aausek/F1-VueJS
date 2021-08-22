@@ -6,8 +6,10 @@
   </main>
 
   <main class="flex flex-col align-center justify-center text-center" v-else>
-    <div class="text-black-500 text-3xl mt-10 mb-6">Fetching Data</div>
-    <img :src="loadingImage" class="w-24 m-auto" alt="" />
+    <div class="text-3xl md:text-5xl mb-10">Fetching Data</div>
+    <img :src="loadingImage" class="w-32 m-auto" alt="" />
+    <!-- <iframe src="https://giphy.com/embed/F3JhKaucb9QqSF7bSS" 
+    frameBorder="0" class="w-100"></iframe> -->
   </main>
 </template>
 
@@ -26,7 +28,7 @@ export default {
       loading: true,
       drivers: [],
       season: "",
-      loadingImage: require("../assets/buffering.gif"),
+      loadingImage: require("../assets/gif.webp")
     };
   },
   methods: {

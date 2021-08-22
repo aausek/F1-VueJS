@@ -17,12 +17,12 @@
               text-gray-800
             "
           >
-            <th class="text-2xl text-black-900 font-bold mb-4">Position</th>
-            <th class="text-2xl text-black-900 font-bold mb-4">Driver</th>
-            <th class="text-2xl text-black-900 font-bold mb-4">Num</th>
-            <th class="text-2xl text-black-900 font-bold mb-4">Nationality</th>
-            <th class="text-2xl text-black-900 font-bold mb-4">Points</th>
-            <th class="text-2xl text-black-900 font-bold mb-4">Wins</th>
+            <th class="text-2xl text-black-900 text-left font-bold mb-4">Position</th>
+            <th class="text-2xl text-black-900 text-left font-bold mb-12">Driver</th>
+            <th class="text-2xl text-black-900 text-left font-bold mb-12">Num</th>
+            <th class="text-2xl text-black-900 text-left font-bold mb-16">Nationality</th>
+            <th class="text-2xl text-black-900 text-left font-bold mb-16">Points</th>
+            <th class="text-2xl text-black-900 text-left font-bold mb-20">Wins</th>
           </tr>
         </thead>
         <tbody class="w-full">
@@ -31,9 +31,9 @@
             class="
               focus:outline-none
               h-20
-              text-sm
+              text-lg
               leading-none
-              text-gray-800
+              text-green-800
               bg-white
               hover:bg-gray-100
               border-b border-t border-gray-100
@@ -44,28 +44,29 @@
             <td class="pl-4 cursor-pointer">
               <div class="flex items-center">
                 <div class="w-10 h-10">
-                  <img class="w-full h-full" src="../assets/f1logo.png" />
+                  <!-- <img class="w-full h-full" src="../assets/f1logo.png" /> -->
+                  <i class="fas fa-trophy fa-3x"></i>
                 </div>
-                <div class="pl-4">
+                <div class="pl-12">
                   <p class="font-medium">{{ driver.position }}</p>
                 </div>
               </div>
             </td>
-            <td class="pl-12">
-              <p class="text-sm font-medium leading-none text-gray-800">
+            <td class="pl-4">
+              <p class="font-medium">
                 {{ driver.Driver.code }}
               </p>
             </td>
-            <td class="pl-12">
+            <td class="pl-4">
               <p class="font-medium">{{ driver.Driver.permanentNumber }}</p>
             </td>
-            <td class="pl-20">
+            <td class="pl-4">
               <p class="font-medium">{{ driver.Driver.nationality }}</p>
             </td>
-            <td class="pl-20">
+            <td class="pl-4">
               <p class="font-medium">{{ driver.points }}</p>
             </td>
-            <td class="pl-20">
+            <td class="pl-4">
               <p class="font-medium">{{ driver.wins }}</p>
             </td>
           </tr>
