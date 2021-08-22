@@ -2,14 +2,7 @@
   <main v-if="!loading">
     <SeasonTitle :season="season" />
 
-    <DataBoxes
-      :drivers="drivers"
-      :racingNum="racingNum"
-      :nationality="nationality"
-      :points="points"
-      :wins="wins"
-      :position="position"
-    />
+    <DataTable :drivers="drivers"/>
   </main>
 
   <main class="flex flex-col align-center justify-center text-center" v-else>
@@ -20,13 +13,13 @@
 
 <script>
 import SeasonTitle from "@/components/SeasonTitle";
-import DataBoxes from "@/components/DataBoxes";
+import DataTable from "@/components/DataTable";
 
 export default {
   name: "Home",
   components: {
     SeasonTitle,
-    DataBoxes,
+    DataTable
   },
   data() {
     return {
@@ -45,13 +38,13 @@ export default {
             response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
           this.season = response.MRData.StandingsTable.StandingsLists[0].season;
           //console.log(response.MRData)
+          this.loading = false;
         });
     },
   },
   created() {
     this.fetchData();
-
-    this.loading = false;
+    this.loading = true;
   },
 };
 </script>
