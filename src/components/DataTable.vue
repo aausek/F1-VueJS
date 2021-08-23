@@ -19,8 +19,8 @@
           >
             <th class="text-2xl text-black-900 text-left font-bold mb-4">Position</th>
             <th class="text-2xl text-black-900 text-left font-bold mb-12">Driver</th>
-            <th class="text-2xl text-black-900 text-left font-bold mb-12">Num</th>
-            <th class="text-2xl text-black-900 text-left font-bold mb-16">Nationality</th>
+            <th class="text-2xl text-black-900 text-left font-bold mb-12">Number</th>
+            <th class="text-2xl text-black-900 text-left font-bold mb-16">Constructor</th>
             <th class="text-2xl text-black-900 text-left font-bold mb-16">Points</th>
             <th class="text-2xl text-black-900 text-left font-bold mb-20">Wins</th>
           </tr>
@@ -45,9 +45,9 @@
               <div class="flex items-center">
                 <div class="w-10 h-10">
                   <!-- <img class="w-full h-full" src="../assets/f1logo.png" /> -->
-                  <i class="fas fa-trophy fa-3x"></i>
+                  <i class="fas fa-trophy fa-2x"></i>
                 </div>
-                <div class="pl-12">
+                <div class="pl-4">
                   <p class="font-medium">{{ driver.position }}</p>
                 </div>
               </div>
@@ -57,11 +57,11 @@
                 {{ driver.Driver.code }}
               </p>
             </td>
-            <td class="pl-4">
+            <td class="pl-8">
               <p class="font-medium">{{ driver.Driver.permanentNumber }}</p>
             </td>
             <td class="pl-4">
-              <p class="font-medium">{{ driver.Driver.nationality }}</p>
+              <p class="font-medium">{{ driver.Constructors[0].name }}</p>
             </td>
             <td class="pl-4">
               <p class="font-medium">{{ driver.points }}</p>

@@ -2,7 +2,9 @@
   <main v-if="!loading">
     <SeasonTitle :season="season" />
 
-    <DataTable :drivers="drivers"/>
+    <FilterSelect :drivers="drivers" />
+
+    <DataTable :drivers="drivers" @get-driver="getDriver" />
   </main>
 
   <main class="flex flex-col align-center justify-center text-center" v-else>
@@ -16,19 +18,21 @@
 <script>
 import SeasonTitle from "@/components/SeasonTitle";
 import DataTable from "@/components/DataTable";
+import FilterSelect from "@/components/FilterSelect";
 
 export default {
   name: "Home",
   components: {
     SeasonTitle,
-    DataTable
+    DataTable,
+    FilterSelect,
   },
   data() {
     return {
       loading: true,
       drivers: [],
       season: "",
-      loadingImage: require("../assets/gif.webp")
+      loadingImage: require("../assets/gif.webp"),
     };
   },
   methods: {
@@ -42,6 +46,11 @@ export default {
           //console.log(response.MRData)
           this.loading = false;
         });
+    },
+    getDriver(driver) {
+      status.value = driver;
+      title.value = Driver.code;
+      console.log(driver);
     },
   },
   created() {

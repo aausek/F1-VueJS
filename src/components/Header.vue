@@ -6,7 +6,8 @@
     </div>
 
     <p>
-      API by <a href="http://ergast.com/mrd/" class="text-yellow-300" target="_blank">Ergast Developer API</a>
+      API by <a href="http://ergast.com/mrd/" class="text-yellow-300" 
+      target="_blank">Ergast Developer API</a>
     </p>
   </header>
 
