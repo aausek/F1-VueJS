@@ -2,7 +2,7 @@
   <select
     v-model="selected"
     class="form-select mt-4 mb-10 block w-full border p-3 rounded"
-    @change="onChange()"
+    @change="onChange"
   >
     <option value="0">Select Driver</option>
     <option v-for="driver in drivers" :value="driver.Driver.code" :key="driver">
@@ -23,9 +23,8 @@ export default {
       selected,
       onChange () {
         const driver = drivers.find((item) => item.Driver.code === selected.value);
-        // console.log(driver);
-        // console.log(selected.value);
         emit('get-driver', driver);
+        console.log(driver);
       }
     };
   }
