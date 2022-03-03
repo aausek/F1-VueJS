@@ -2,6 +2,7 @@
 node_modules
 /dist
 ._*
+new_FilterSelect.vue
 
 
 # local env files
