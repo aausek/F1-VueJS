@@ -2,10 +2,10 @@
   <select
     v-model="selected"
     class="form-select mt-4 mb-10 block w-full border p-3 rounded"
-    @change="onChange()"
+    @change="onChange"
   >
     <option value="0">Select Driver</option>
-    <option v-for="driver in drivers" :value="driver.Driver.code" :key="driver.code">
+    <option v-for="driver in stats" v-bind:value="driver.Driver.code">
       {{ driver.Driver.code }}
     </option>
   </select>
@@ -13,19 +13,21 @@
 
 <script>
 import { ref } from 'vue';
+
 export default {
   name: 'FilterSelect',
-  props: ['drivers'],
-  setup ({ drivers }, { emit }) {
+  props: ['stats'],
+  setup ({ stats }, { emit }) {
     const selected = ref(0);
+
     return {
       selected,
       onChange () {
-        const driver = drivers.find((item) => item.Driver.code === selected.value);
-        console.log(driver);
-        console.log(selected.value);
+        const driver = stats.find((item) => item.Driver.code === selected.value);
         emit('get-driver', driver);
-      }
+        console.log(driver);
+      },
+      
     };
   }
 };

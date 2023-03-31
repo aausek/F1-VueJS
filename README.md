@@ -18,3 +18,5 @@ Vue.js & Tailwind CSS app rendering F1 2021 Driver's Championship Standings
 
 ### TODOs
 - Implement API caching or DB storage
+- Set new routes
+- Reformat *DataTable* layout so whole element is inside a container

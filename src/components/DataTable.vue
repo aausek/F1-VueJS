@@ -1,6 +1,6 @@
 <template>
   <!-- Data Table display -->
-  <div class="w-full sm:px-6">
+  <div class="w-full sm:px-6" dark>
     <div
       class="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto"
     >
@@ -38,7 +38,7 @@
               hover:bg-gray-100
               border-b border-t border-gray-100
             "
-            v-for="driver in drivers"
+            v-for="driver in stats"
             :key="driver"
           >
             <td class="pl-4 cursor-pointer">
@@ -79,6 +79,6 @@
 <script>
 export default {
   name: "DataTable",
-  props: ["drivers"],
+  props: ["stats"],
 };
 </script>

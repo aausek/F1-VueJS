@@ -1,10 +1,13 @@
 <template>
   <main v-if="!loading">
+    <Header :season="season" />
+    
     <SeasonTitle :season="season" />
 
-    <FilterSelect :driversCode="driversCode" @get-driver="getDriver()" />
+    <FilterSelect :stats="stats" @get-driver="getDriverData"/>
 
-    <DataTable :drivers="drivers" />
+    <DataTable :stats="stats" />
+    
   </main>
 
   <main class="flex flex-col align-center justify-center text-center" v-else>
@@ -13,13 +16,28 @@
     <!-- <iframe src="https://giphy.com/embed/F3JhKaucb9QqSF7bSS" 
     frameBorder="0" class="w-100"></iframe> -->
   </main>
+
+      <!-- <v-btn text @click="darkMode">
+      <font-awesome-icon
+        v-if="$vuetify.theme.dark"
+        icon="fa-solid fa-sun"
+        size="lg"
+      />
+      <font-awesome-icon v-else icon="fa-solid fa-moon" size="lg" />
+      <span class="ml-2">
+        {{ $vuetify.theme.dark ? "Ligh Mode" : "Dark Mode" }}</span
+      >
+    </v-btn> -->
 </template>
 
 <script>
 import SeasonTitle from "@/components/SeasonTitle";
 import DataTable from "@/components/DataTable";
+import DataBoxes from "@/components/DataBoxes";
 import FilterSelect from "@/components/FilterSelect";
+import Header from "@/components/Header";
 import { ref } from 'vue';
+import _ from 'lodash';
 
 // export default {
 //   name: "Home",
@@ -31,26 +49,26 @@ import { ref } from 'vue';
 //   data() {
 //     return {
 //       loading: true,
-//       drivers: [],
+//       stats: [],
 //       season: "",
 //       loadingImage: require("../assets/gif.webp"),
 //     };
 //   },
 //   methods: {
 //     fetchData() {
-//       fetch("http://ergast.com/api/f1/2021/driverStandings.json")
+//       fetch("http://ergast.com/api/f1/2021/statstandings.json")
 //         .then((response) => response.json())
 //         .then((response) => {
-//           this.drivers =
-//             response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+//           this.stats =
+//             response.MRData.StandingsTable.StandingsLists[0].statstandings;
 //           this.season = response.MRData.StandingsTable.StandingsLists[0].season;
 //           //console.log(response.MRData)
 //           this.loading = false;
 //         });
 //     },
 //     getDriver(driver) {
-//       this.drivers = driver;
-//       console.log(this.drivers.Driver);
+//       stats.value = driver;
+//       // console.log(this.stats.Driver);
 //     },
 //   },
 //     created() {
@@ -58,45 +76,60 @@ import { ref } from 'vue';
 //       this.loading = true;
 //     },
 // };
-
 // ----------------
-
 export default {
   name: "Home",
   components: {
     SeasonTitle,
     DataTable,
+    DataBoxes,
     FilterSelect,
+    Header
   },
   setup () {
     const loading = ref(true);
     const season = ref('');
-    const driversCode = ref([]);
-    const drivers = ref({});
+    const prevSeason = new Date().getFullYear() - 1;
+    const stats = ref({});
+    const driverCodes = ref([]);
+
     const fetchData = async () => {
-      const res = await fetch('http://ergast.com/api/f1/2021/driverStandings.json');
+      const res = await fetch('http://ergast.com/api/f1/' + prevSeason + '/driverStandings.json');
       //console.log(res);
       return await res.json();
     };
     
-    const getDriver = (driver) => {
-      drivers.value = driver;
+    const getDriverData = (driver) => {
+      stats.value = driver;
+      //driverCodes.value = driver.Driver.code;
       console.log(driver);
     };
 
     const clearData = async () => {
       loading.value = true;
       const data = await fetchData();
-      drivers.value = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+      stats.value = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
       loading.value = false;
     };
 
     const baseSetup = async () => {
       const data = await fetchData();
-      drivers.value = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-      driversCode.value = data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.code;
+
+      stats.value = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+      // Console 
+      console.log(stats._rawValue);
       season.value = data.MRData.StandingsTable.StandingsLists[0].season;
       loading.value = false;
+
+      for(var i = 0; i < data.length; i++) {
+        var obj = data[i];
+        console.log(obj.id);
+      };
+    };
+
+    // TODO
+    const darkMode = async () => {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     };
 
     baseSetup();
@@ -104,14 +137,12 @@ export default {
     return {
       loading,
       loadingImage: require("../assets/gif.webp"),
-      driversCode,
-      drivers,
+      stats,
       season,
-      getDriver,
-      clearData
+      getDriverData,
+      clearData,
+      darkMode
     };
   }
 };
-
-
 </script>
