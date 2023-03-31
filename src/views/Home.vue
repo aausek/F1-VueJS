@@ -38,6 +38,7 @@ import FilterSelect from "@/components/FilterSelect";
 import Header from "@/components/Header";
 import { ref } from 'vue';
 import _ from 'lodash';
+import DriverStandingsData from "../data/driverstandings.json";
 
 // export default {
 //   name: "Home",
@@ -84,7 +85,8 @@ export default {
     DataTable,
     DataBoxes,
     FilterSelect,
-    Header
+    Header,
+    DriverStandingsData
   },
   setup () {
     const loading = ref(true);
@@ -93,27 +95,30 @@ export default {
     const stats = ref({});
     const driverCodes = ref([]);
 
-    const fetchData = async () => {
-      const res = await fetch('http://ergast.com/api/f1/' + prevSeason + '/driverStandings.json');
-      //console.log(res);
-      return await res.json();
-    };
+    // const fetchData = async () => {
+    //   const res = await fetch('http://ergast.com/api/f1/' + prevSeason + '/driverStandings.json');
+    //   //console.log(res);
+    //   return await res.json();
+    // };
     
     const getDriverData = (driver) => {
-      stats.value = driver;
-      //driverCodes.value = driver.Driver.code;
+      stats.value = DriverStandingsData.driver;
+      // driverCodes.value = driver.Driver.code;
       console.log(driver);
     };
 
     const clearData = async () => {
       loading.value = true;
-      const data = await fetchData();
+      // const data = await fetchData();
+      const data = DriverStandingsData;
       stats.value = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
       loading.value = false;
     };
 
     const baseSetup = async () => {
-      const data = await fetchData();
+      // const data = await fetchData();
+
+      const data = DriverStandingsData;
 
       stats.value = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
       // Console 
