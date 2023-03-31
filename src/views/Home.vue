@@ -38,7 +38,7 @@ import FilterSelect from "@/components/FilterSelect";
 import Header from "@/components/Header";
 import { ref } from 'vue';
 import _ from 'lodash';
-import DriverStandingsData from "../data/driverstandings.json";
+import DriverStandingsData from "../data/driverstandings2022.json";
 
 // export default {
 //   name: "Home",
@@ -106,6 +106,7 @@ export default {
       // driverCodes.value = driver.Driver.code;
       console.log(driver);
     };
+    console.log(DriverStandingsData);
 
     const clearData = async () => {
       loading.value = true;
